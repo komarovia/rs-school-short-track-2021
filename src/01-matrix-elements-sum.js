@@ -17,6 +17,21 @@
 function getMatrixElementsSum(matrix) {
   const arr = matrix.flat();
   let result = 0;
+  if (!arr.includes(0)) {
+    result = arr.reduce((sum, current) => sum + current, 0);
+    return result;
+  }
+  if (arr.length <= 4) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i + 1] === 0) {
+        result += arr[i];
+      }
+      if (i > 0 && arr[i + 1] === 0) {
+        result += arr[i - 1];
+      }
+    }
+    return result;
+  }
   for (let i = 0; i < arr.length - 4; i++) {
     if (arr[i + 4] === 0) {
       result += arr[i];
